@@ -1,7 +1,10 @@
 package dev.sgp.web;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -9,8 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dev.sgp.entite.Collaborateur;
+import dev.sgp.service.CollaborateurService;
+import dev.sgp.util.Constantes;
+	
 public class EditerCollaborateursController extends HttpServlet {
-	public static final String[] PARAMETRES = {"matricule", "titre", "nom", "prenom"};
+	
+	//récupération du service
+	private CollaborateurService collabService = Constantes.COLLAB_SERVICE;
+	
+	public static final String[] PARAMETRES = {"nom", "prenom", "dateNaissance", "adresse", "numeroSecu"};
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
@@ -18,7 +29,7 @@ public class EditerCollaborateursController extends HttpServlet {
 		String matriculeParam = request.getParameter("matricule");
 		
 		if(matriculeParam == null) {
-			response.sendError(400, "Un matricule est attendu");
+			request.getRequestDispatcher("/WEB-INF/views/collab/editerCollaborateur.jsp").forward(request, response);
 		} else {
 			response.setStatus(200);
 			//code HTML écrit dans le corps de la réponse
@@ -47,14 +58,18 @@ public class EditerCollaborateursController extends HttpServlet {
 				response.sendError(400, errorMsg);
 			} else {
 				response.setStatus(201);
-				//code HTML écrit dans le corps de la réponse
-				String respContent = "<h1>Création d'un collaborateur avec les informations suivantes :</h1";
-				respContent += "<ul>";
-				for(Map.Entry<String, String> entry : paramValues.entrySet()) {
-					respContent += "<li>" + entry.getKey() + " = " + entry.getValue() + "</li>";
-				}
-				respContent += "</ul>";
-				response.getWriter().write(respContent);
+
+				List<Collaborateur> collaborateurs = collabService.getListeCollaborateurs();
+				
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				LocalDate dateNaissance = LocalDate.parse(paramValues.get(PARAMETRES[2]), formatter);
+				
+				collaborateurs.add(new Collaborateur(paramValues.get(PARAMETRES[0]),
+						paramValues.get(PARAMETRES[1]),
+						dateNaissance,
+						paramValues.get(PARAMETRES[3]),
+						paramValues.get(PARAMETRES[4])));
+				
 			}
 	}
 }
