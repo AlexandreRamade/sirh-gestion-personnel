@@ -18,7 +18,7 @@ public class EditerCollaborateursController extends HttpServlet {
 		String matriculeParam = request.getParameter("matricule");
 		
 		if(matriculeParam == null) {
-			response.setStatus(400, "Un matricule est attendu");
+			response.sendError(400, "Un matricule est attendu");
 		} else {
 			response.setStatus(200);
 			//code HTML écrit dans le corps de la réponse
@@ -44,7 +44,7 @@ public class EditerCollaborateursController extends HttpServlet {
 						errorMsg += entry.getKey() + " ";
 					}
 				}
-				response.setStatus(400, errorMsg);
+				response.sendError(400, errorMsg);
 			} else {
 				response.setStatus(201);
 				//code HTML écrit dans le corps de la réponse
