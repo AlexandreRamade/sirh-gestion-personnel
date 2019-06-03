@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +38,7 @@
 			</div>
 			
 			<div class="form-group row">
-				<label for="numeroSecu" class="col-sm-4 col-form-label"> Numero de sÃ©curitÃ© sociale</label>
+				<label for="numeroSecu" class="col-sm-4 col-form-label"> Numero de sécurité sociale</label>
 				<div class="col-sm-8">
 					<input type="text" name="numeroSecu" id="numeroSecu" required />
 				</div>
@@ -48,7 +46,7 @@
 	
 			<div class="form-group row">
 				<div class="col-sm-10">
-					<input type="submit" value="CrÃ©er" class="btn btn-primary"/>	
+					<input type="submit" value="Créer" class="btn btn-primary"/>	
 				</div>
 			</div>
 		</form>

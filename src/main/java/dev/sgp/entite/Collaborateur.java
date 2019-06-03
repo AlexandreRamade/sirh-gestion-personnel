@@ -15,6 +15,8 @@ public class Collaborateur {
 	private String photo;
 	private ZonedDateTime dateHeureCreation;
 	private boolean actif;
+	private String intitulePoste;
+	private Departement departement;
 	
 		
 	public Collaborateur() {
@@ -48,10 +50,6 @@ public class Collaborateur {
 
 	public String getMatricule() {
 		return matricule;
-	}
-
-	public void setMatricule(String matricule) {
-		this.matricule = matricule;
 	}
 
 	public String getNom() {
