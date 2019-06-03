@@ -23,7 +23,7 @@ public class ListerCollaborateursController extends HttpServlet {
 		
 		List<Collaborateur> collaborateurs = collabService.getListeCollaborateurs();
 		
-		request.setAttribute(LISTE_NOMS_ATT, Arrays.asList("Robert", "Jean", "Hugues"));
+		request.setAttribute(LISTE_NOMS_ATT, collabService.getListeCollaborateurs());
 		
 		request.getRequestDispatcher("/WEB-INF/views/collab/listerCollaborateurs.jsp").forward(request, response);
 	}
