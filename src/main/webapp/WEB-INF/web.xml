@@ -41,17 +41,6 @@
   <servlet-mapping>
   	<servlet-name>ObtenirStatistiques</servlet-name>
   	<url-pattern>/statistiques</url-pattern>
-  </servlet-mapping>
-  
-
-  <jsp-config>
-       <jsp-property-group>
-           <url-pattern>*.jsp</url-pattern>
-           <include-prelude>/WEB-INF/views/taglibs.jsp</include-prelude>
-       </jsp-property-group>
-   </jsp-config>
-  
-  
- 	
+  </servlet-mapping> 	
   
 </web-app>

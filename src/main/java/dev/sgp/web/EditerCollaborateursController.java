@@ -98,7 +98,7 @@ public class EditerCollaborateursController extends HttpServlet {
 			
 			
 			request.setAttribute(LISTE_NOMS_ATT, collaborateurs);
-			request.getRequestDispatcher("/WEB-INF/views/collab/listerCollaborateurs.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/collaborateurs/lister");
 		}
 	}
 }
